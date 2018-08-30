@@ -1,0 +1,74 @@
+#define MUX_A D2
+#define MUX_B D3
+#define MUX_C D4
+
+#define ANALOG_INPUT A0
+
+
+void setup() {
+  //Deifne output pins for Mux
+
+  Serial.begin(9600);
+  pinMode(MUX_A, OUTPUT);
+  pinMode(MUX_B, OUTPUT);     
+  pinMode(MUX_C, OUTPUT);     
+}
+
+void changeMux(int c, int b, int a) {
+  digitalWrite(MUX_A, a);
+  digitalWrite(MUX_B, b);
+  digitalWrite(MUX_C, c);
+}
+
+void loop() {
+  
+  float value;
+  
+  changeMux(LOW, LOW, LOW);//000 = C0
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 0 pin of Mux
+  float input = (3.3/1024)* value;
+  Serial.printf("%.4f\n", input);
+
+  delay(2000);
+  
+  changeMux(LOW, LOW, HIGH);//001 = C1
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 1 pin of Mux
+  input = (3.3/1024)*value;
+  Serial.printf("%.4f\n", input);
+
+  delay(2000);
+/*
+  changeMux(LOW, HIGH, LOW);
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 2 pin of Mux
+Serial.println(value);
+
+  delay(1000);
+  changeMux(LOW, HIGH, HIGH);
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 3 pin of Mux
+Serial.println(value);
+
+  delay(1000);
+  changeMux(HIGH, LOW, LOW);
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 4 pin of Mux
+
+Serial.println(value);
+
+  delay(1000);
+  changeMux(HIGH, LOW, HIGH);
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 5 pin of Mux
+Serial.println(value);
+
+  delay(1000);
+  changeMux(HIGH, HIGH, LOW);
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 6 pin of Mux
+Serial.println(value);
+
+  delay(1000);
+  changeMux(HIGH, HIGH, HIGH);
+  value = analogRead(ANALOG_INPUT); //Value of the sensor connected Option 7 pin of Mux
+Serial.println(value);
+
+  delay(1000);
+
+    */
+}
