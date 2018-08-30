@@ -1,0 +1,35 @@
+#define ANALOG_INPUT A0
+
+void setup() {
+  
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  pinMode(ANALOG_INPUT, INPUT);
+
+  float value = analogRead(ANALOG_INPUT);//teoricamente mesma função para o esp - função para analog input 
+  float voltage = value*(3.3/1023.0);
+
+  Serial.println("Logico: ");//valor entre 0 e 1023
+  Serial.println(value);
+  Serial.println("Tensao: ");//valor real
+  Serial.printf("%.4f\n", voltage);
+
+  //Get Current Baud rate
+  int baud_rate = Serial.baudRate();
+
+  //Print serial baud rate
+  Serial.printf("Serial is %d bps\n", baud_rate);
+  
+  //ESP.getVcc();//Return the Vcc Voltage - ADC pin must be unconnected
+  //ADC_MODE(ADC_VCC);//Have to be added to read vcc voltage -> the place is closer to #include lines
+  
+  delay(2000);
+  
+}
+
+//código ok
+//tem que alinhar os terras na ligação física dos fios
+//(se não alinhar a medição fica zoada/alinhando fica top)
