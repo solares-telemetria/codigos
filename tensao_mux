@@ -1,0 +1,91 @@
+//Mux control pins
+
+int s0 = 2;//D4
+int s1 = 14;//D5
+int s2 = 12;//D6
+int s3 = 13;//D7
+
+void setup() {
+
+  Serial.begin(9600);
+
+  pinMode(A0, INPUT);
+  
+  pinMode(s0, OUTPUT); 
+  pinMode(s1, OUTPUT); 
+  pinMode(s2, OUTPUT); 
+  pinMode(s3, OUTPUT); 
+    
+  digitalWrite(s0, LOW);
+  digitalWrite(s1, LOW);
+  digitalWrite(s2, LOW);
+  digitalWrite(s3, LOW);
+    
+}
+
+void loop(){
+        
+        //leitura s0      
+
+        digitalWrite(s0, LOW);
+        digitalWrite(s1, LOW);
+        digitalWrite(s2, LOW);
+        digitalWrite(s3, LOW);
+
+        delay(5000);
+  
+        int valor = analogRead(A0);
+
+        Serial.println("Entrada S0:");
+        Serial.println(valor);
+
+        delay(2000);
+
+        //leitura s1      
+
+        digitalWrite(s0, HIGH);
+        digitalWrite(s1, LOW);
+        digitalWrite(s2, LOW);
+        digitalWrite(s3, LOW);
+
+        delay(5000);
+        valor = analogRead(A0);
+
+        Serial.println("Entrada S1:");
+        Serial.println(valor);
+
+        delay(2000);
+
+        //leitura s2      
+
+        digitalWrite(s0, LOW);
+        digitalWrite(s1, HIGH);
+        digitalWrite(s2, LOW);
+        digitalWrite(s3, LOW);
+
+        delay(5000);
+        valor = analogRead(A0);
+
+        Serial.println("Entrada S2:");
+        Serial.println(valor);
+
+        delay(2000);
+
+        //leitura s3      
+
+        digitalWrite(s0, HIGH); 
+        digitalWrite(s1, HIGH);
+        digitalWrite(s2, LOW);
+        digitalWrite(s3, LOW);
+
+        delay(5000);
+        
+        valor = analogRead(A0);
+
+        Serial.println("Entrada S3:");
+        Serial.println(valor);
+
+        delay(2000);
+  
+        }
+
